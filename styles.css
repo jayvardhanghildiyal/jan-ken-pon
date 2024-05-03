@@ -1,0 +1,14 @@
+body{
+    font-family: Arial, Helvetica, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: auto;
+    height: 500px;
+}
+
+div {
+    margin: 100px;
+    font-size: 25px;
+
+}

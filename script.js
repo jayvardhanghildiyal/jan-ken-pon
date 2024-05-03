@@ -2,6 +2,7 @@
 console.log("scissor paper rock game yurp")
 
 let humanScore = 0, computerScore = 0;
+let turn = 5
 
 function getComputerChoice() {
     let choice = Math.floor(Math.random() * 3);
@@ -21,42 +22,47 @@ function getHumanChoice() {
     return humanChoice.toLowerCase();
 }
 
-let humanSelection = getHumanChoice()
-let computerSelection = getComputerChoice()
-console.log(humanSelection)
-console.log(computerSelection)
+
+
 
 function playRound(computerSelection, humanSelection) {
+
     if (computerSelection === humanSelection) {
         console.log("Point goes to no one!")
     } 
 
     else if(computerSelection == "rock") {
          if(humanSelection == "paper"){
-            humanScore = ++humanScore;
+            ++humanScore;
+            --turn
             console.log("The Human Scores !")
          } else {
-            computerScore = ++computerScore;
+            ++computerScore;
+            --turn
             console.log("The Computer Scores !")
          }
     } 
     
     else if(computerSelection == "paper") {
         if(humanSelection == "scissors"){
-           humanScore = ++humanScore;
+           ++humanScore;
+           --turn
            console.log("The Human Scores !")
         } else {
-           computerScore = ++computerScore;
+           ++computerScore;
+           --turn
            console.log("The Computer Scores !")
         }
     }
     
     else if(computerSelection == "scissors") {
         if(humanSelection == "rock"){
-           humanScore = ++humanScore;
+           ++humanScore;
+           --turn
            console.log("The Human Scores !")
         } else {
-           computerScore = ++computerScore;
+           ++computerScore;
+           --turn
            console.log("The Computer Scores !")
         }
 
@@ -64,14 +70,23 @@ function playRound(computerSelection, humanSelection) {
 }
 
 function playGame() {
-    for(i = 0; i < 5; i++) {
+    for(; turn > 0;) {
+        let humanSelection = getHumanChoice()
+        let computerSelection = getComputerChoice()
+        console.log("Human chose " + humanSelection)
+        console.log("Computer chose " + computerSelection)
         playRound(computerSelection, humanSelection)
+        console.log("------*EXECUTED ONCE*------")
     }
+}
 
-    if (human > getComputerChoice) {
-        console.log("Humans reign supreme !")
-    } 
-    else {
-        console.log("The future will be robots !")
-    }
+playGame()
+
+if (humanScore > computerScore) {
+    console.log("Humans reign supreme !")
+    console.log(`Computer - ${computerScore} || Human - ${humanScore}`)
+} 
+else {
+    console.log("The future will be robots !")
+    console.log(`Computer - ${computerScore} || Human - ${humanScore}`)
 }
