@@ -1,8 +1,32 @@
-//testing testing testing
-console.log("scissor paper rock game yurp")
+const rbtn = document.querySelector(".rock")
+const pbtn = document.querySelector(".paper")
+const sbtn = document.querySelector(".scissors")
 
-let humanScore = 0, computerScore = 0;
-let turn = 5
+const panel = document.querySelector("h3.panel")
+const scoreboard = document.querySelector("h2.scoreboard")
+const commentary = document.querySelector("h4.commentary")
+
+let computerChoice = ""
+let humanScore = 0, computerScore = 0
+
+rbtn.addEventListener("click", () => {
+    computerChoice = getComputerChoice()
+    playRound(computerChoice, "rock")
+    commentary.textContent = `Human chose ${"rock".toUpperCase()} and Computer chose ${computerChoice.toUpperCase()}`
+})
+
+pbtn.addEventListener("click", () => {
+    computerChoice = getComputerChoice()
+    playRound(computerChoice, "paper")
+    commentary.textContent = `Human chose ${"paper".toUpperCase()} and Computer chose ${computerChoice.toUpperCase()}`
+})
+
+sbtn.addEventListener("click", () => {
+    computerChoice = getComputerChoice()
+    playRound(computerChoice, "scissors")
+    commentary.textContent = `Human chose ${"scissors".toUpperCase()} and Computer chose ${computerChoice.toUpperCase()}`
+})
+
 
 function getComputerChoice() {
     let choice = Math.floor(Math.random() * 3);
@@ -17,76 +41,46 @@ function getComputerChoice() {
     return computerChoice;
 }
 
-function getHumanChoice() {
-    let humanChoice = prompt("Enter your choice!")
-    return humanChoice.toLowerCase();
-}
-
-
-
-
 function playRound(computerSelection, humanSelection) {
 
     if (computerSelection === humanSelection) {
-        console.log("Point goes to no one!")
+        panel.textContent = "DRAW ! IT'S GETTING INTENSE !!!"
     } 
 
     else if(computerSelection == "rock") {
          if(humanSelection == "paper"){
             ++humanScore;
-            --turn
-            console.log("The Human Scores !")
+            panel.textContent = "HUMAN SCORES !"
          } else {
             ++computerScore;
-            --turn
-            console.log("The Computer Scores !")
+            panel.textContent = "COMPUTER SCORES !"
          }
     } 
     
     else if(computerSelection == "paper") {
         if(humanSelection == "scissors"){
            ++humanScore;
-           --turn
-           console.log("The Human Scores !")
+           panel.textContent = "HUMAN SCORES !"
         } else {
            ++computerScore;
-           --turn
-           console.log("The Computer Scores !")
+           panel.textContent = "COMPUTER SCORES !"
         }
     }
     
     else if(computerSelection == "scissors") {
         if(humanSelection == "rock"){
            ++humanScore;
-           --turn
-           console.log("The Human Scores !")
+           panel.textContent = "HUMAN SCORES !"
         } else {
            ++computerScore;
-           --turn
-           console.log("The Computer Scores !")
+           panel.textContent = "COMPUTER SCORES !"
         }
-
     }
-}
 
-function playGame() {
-    for(; turn > 0;) {
-        let humanSelection = getHumanChoice()
-        let computerSelection = getComputerChoice()
-        console.log("Human chose " + humanSelection)
-        console.log("Computer chose " + computerSelection)
-        playRound(computerSelection, humanSelection)
-        console.log("------*EXECUTED ONCE*------")
+    scoreboard.textContent = `Computer - ${computerScore} || Human - ${humanScore}`
+    if (humanScore == 5) {
+        panel.textContent = "MASTERS OF MANKIND , FEARED BY THE GODS !"
+    } else if (computerScore == 5) {
+        panel.textContent = "OVERWHELMING THEIR CREATORS, A GREAT UTOPIA AWAITS !"
     }
-}
-
-playGame()
-
-if (humanScore > computerScore) {
-    console.log("Humans reign supreme !")
-    console.log(`Computer - ${computerScore} || Human - ${humanScore}`)
-} 
-else {
-    console.log("The future will be robots !")
-    console.log(`Computer - ${computerScore} || Human - ${humanScore}`)
 }
