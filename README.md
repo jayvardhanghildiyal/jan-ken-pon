@@ -1,4 +1,4 @@
 # jan-ken-pon
-TO VIEW THE SCORE AND COMPUTER CHOICE, PLEASE OPEN THE CONSOLE BY PRESSING F12 AND REFRESH THE GAME ONCE.
+A simple rock paper scissors game complete with a user interface, commentary and a score tracker.
 
-Not playing your turn automatically results in the computer scoring ! just like in real life.
+Assignment work done for TheOdinProject
